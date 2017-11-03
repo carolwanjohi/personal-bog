@@ -47,7 +47,7 @@ class TestRole(unittest.TestCase):
 
     def test_delete_post(self):
         '''
-        Test case to check if new_post is delete from the database
+        Test case to check if test_post is deleted from the database
         '''
 
         self.new_post.save_post()
@@ -56,7 +56,7 @@ class TestRole(unittest.TestCase):
 
         test_post.save_post()
 
-        test_post.delete_post()
+        test_post.delete_post(test_post.id)
 
         gotten_posts = Post.get_posts()
 
