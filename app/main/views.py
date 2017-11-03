@@ -11,10 +11,21 @@ def index():
     '''
 
     title = 'Home'
-
     posts = Post.get_posts()
 
     return render_template('index.html', title = title, posts=posts )
+
+@main.route('/post/<int:id>')
+def post(id):
+
+    '''
+    View post page function that returns a page with a post and its comments
+    '''
+    post = Post.query.get(id)
+    title = f'Post {post.id}'
+
+    return render_template('post.html', title=title, post=post )
+
 
 
 

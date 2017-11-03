@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+<!-- Content block -->
+{% block content %}
+
+    <title> {{ title }} </title>
+
+    <div class="container">
+
+        <h2> 
+            {{ post.post_title }}
+            <br>
+            <small>
+                by {{ post.user.username }}
+            </small> 
+        </h2>
+
+        <p>
+            {{ post.post_content }}
+        </p>
+
+        <hr>
+
+        <h3>
+            Comments
+        </h3>
+
+        <hr>
+
+
+    </div>
+
+{% endblock %}
