@@ -1,8 +1,10 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..models import User,Role,Post,Comment
-from .forms import CommentForm
+from .forms import CommentForm,PostForm
 from flask_login import login_required,current_user
+from datetime import datetime, timezone
+
 
 
 # Views
@@ -62,15 +64,41 @@ def writer():
     '''
     View root page function that returns the writer page and its data
     '''
-    # user = current_user.get_id()
     if current_user.role.id == 1 :
 
-        title = 'Home'
+        title = 'Writer'
         posts = Post.get_posts()
 
         return render_template('writer.html', title = title, posts=posts )
-    # else:
-    #     abort(404)
+
+    else:
+        abort(404)
+
+@main.route('/writer/post/new', methods=['GET','POST'])
+@login_required
+def new_post():
+
+    '''
+    View new post function that returns a page with a form to create a post
+    '''
+    if current_user.role.id == 1 :
+
+        form = PostForm()
+
+        if form.validate_on_submit():
+            post_title = form.post_title.data
+            post_content = form.post_content.data
+            new_post = Post(post_title=post_title, post_content=post_content, user=current_user)
+            new_post.save_post()
+
+            return redirect(url_for('.writer'))
+
+        title = 'Create Post'
+
+        return render_template('new_post.html', title = title, post_form=form )
+
+    else:
+        abort(404)
 
 
 

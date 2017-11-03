@@ -2,7 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
-from datetime import datetime
+from datetime import datetime, timezone
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -106,7 +106,7 @@ class Post(db.Model):
     post_content = db.Column(db.String)
 
     # post_date column for the post's posting date 
-    post_date = db.Column(db.Time, default=datetime.utcnow())
+    post_date = db.Column(db.DateTime, default=datetime.now(timezone.utc))
 
     # user_id column for linking a post with a user
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))

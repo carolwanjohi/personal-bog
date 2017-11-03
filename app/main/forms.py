@@ -4,8 +4,16 @@ from wtforms.validators import Required
 
 class CommentForm(FlaskForm):
     '''
-    Class to create a wtf form for creating a feedback on a pitch
+    Class to create a wtf form for creating a feedback on a post
     '''
     comment_content =  TextAreaField('Comment', validators=[Required()])
+    submit = SubmitField('Submit')
+
+class PostForm(FlaskForm):
+    '''
+    Class to create a wtf form for creating a post
+    '''
+    post_title = StringField('Post Title', validators=[Required()])
+    post_content = TextAreaField('Post Content', validators=[Required()])
     submit = SubmitField('Submit')
 
