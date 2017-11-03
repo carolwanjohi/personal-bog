@@ -1,6 +1,5 @@
 import unittest
-# Import class to be tested
-from app.models import User
+from app.models import User,Role
 
 class TestUser(unittest.TestCase):
     '''
@@ -14,7 +13,14 @@ class TestUser(unittest.TestCase):
         '''
         Set up method that will run before every Test
         '''
-        self.new_user = User(password='banana')
+        self.user_role = Role(name="Banana Eater")
+        self.new_user = User(password='banana', role=self.user_role)
+
+    def test_instance(self):
+        '''
+        Test case to check if new_user is an instance of User
+        '''
+        self.assertTrue( isinstance( self.new_user, User) )
 
     def test_password_setter(self):
         '''

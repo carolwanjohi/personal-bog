@@ -31,6 +31,9 @@ class User(UserMixin,db.Model):
     # password_hash column for passwords
     password_hash = db.Column(db.String(255))
 
+    # role_id column for a User's role
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -58,6 +61,25 @@ class User(UserMixin,db.Model):
         db.session.add(self)
         db.session.commit()
 
+class Role(db.Model):
+    '''
+    Role class to define a User's role in the database
+    '''
+
+    # Name od the table
+    __tablename__ = 'roles'
+
+    # id column that is the primary key
+    id = db.Column(db.Integer, primary_key = True)
+
+    # name column for the name of the roles
+    name = db.Column(db.String(255))
+
+    # virtual column to connect with foriegn key
+    users = db.relationship('User', backref='role', lazy='dynamic')
+
+    def __repr__(self):
+        return f'User {self.name}'
 
 
 
