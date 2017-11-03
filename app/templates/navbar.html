@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 
+<!-- Styles block -->
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/navbar.css')}}">
+{% endblock %}
+
 <!-- Navbar block -->
 {% block navbar %}
     <div class="container">
 
         <div class="navbar navbar-inverse" role="navigation" >
 
-            <div class="container">
+            <div class="container-fluid">
 
                 <div class="navbar-header">
 
@@ -19,7 +25,7 @@
 
                     </button>
 
-                    <a href="/" class="navbar-brand">SiteName</a>
+                    <a href="/" class="navbar-brand">One Minute Pitch</a>
 
                 </div>
 
@@ -31,6 +37,22 @@
                             <a href="/">Home</a>
                         </li>
                         
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                      {% if current_user.is_authenticated %}
+
+                          <li> <h4 class="username"> {{current_user.username}} </h4> </li>
+
+                          <li> <a href="{{url_for('auth.logout')}}">Sign out</a> </li>
+
+                          {% else %}
+
+                          <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
+                          
+                      {%endif%}
+
                     </ul>
 
                 </div>
