@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+
 
 <!-- Content block -->
 {% block content %}
@@ -21,11 +23,34 @@
 
         <hr>
 
-        <h3>
-            Comments
-        </h3>
+        <div class="row">
+
+            <div class="col-md-4 col-lg-4">
+
+                <h3>Comments</h3>
+
+            </div>
+
+            <div class="col-md-4 col-lg-4">
+                
+            </div>
+
+            <div class="col-md-4 col-lg-">
+                
+                <h3>
+                    <a href="/post/comment/new/{{post.id}}">
+                        Add Comment
+                    </a>
+                </h3>
+            </div>
+        </div>
 
         <hr>
+        
+        <ul class="list-unstyled">
+            {{ macro.displayCommentList(comments) }}
+        </ul>
+
 
 
     </div>
