@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+
+<!-- Content block -->
+{% block content %}
+
+    <title> {{ title }} </title>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-4 col-lg-4">
+
+                <h3>List of Posts</h3>
+                
+            </div>
+
+            <div class="col-md-4 col-lg-4">
+                
+            </div>
+
+            <div class="col-md-4 col-lg-4">
+
+                <a href="/writer/post/new"> Create Post</a>
+                
+            </div>
+
+        </div>
+
+        <hr>
+
+        <ul class="list-unstyled">
+            {{ macro.displayPostList(posts)}}
+        </ul>
+
+
+
+    </div>
+
+{% endblock %}

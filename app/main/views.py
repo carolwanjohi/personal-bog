@@ -55,6 +55,23 @@ def new_comment(id):
     title = 'New Comment'
     return render_template('new_comment.html', title=title, comment_form=form)
 
+@main.route('/writer')
+@login_required
+def writer():
+
+    '''
+    View root page function that returns the writer page and its data
+    '''
+    # user = current_user.get_id()
+    if current_user.role.id == 1 :
+
+        title = 'Home'
+        posts = Post.get_posts()
+
+        return render_template('writer.html', title = title, posts=posts )
+    # else:
+    #     abort(404)
+
 
 
 
