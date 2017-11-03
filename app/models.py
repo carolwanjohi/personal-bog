@@ -73,7 +73,7 @@ class Role(db.Model):
     id = db.Column(db.Integer, primary_key = True)
 
     # name column for the name of the roles
-    name = db.Column(db.String(255))
+    name = db.Column(db.String)
 
     # virtual column to connect with foriegn key
     users = db.relationship('User', backref='role', lazy='dynamic')

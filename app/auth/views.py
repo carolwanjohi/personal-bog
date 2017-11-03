@@ -1,6 +1,6 @@
 from flask import render_template,redirect,url_for,request,flash
 from . import auth
-from ..models import User
+from ..models import User, Role
 from .forms import RegistrationForm,LoginForm
 from .. import db
 from flask_login import login_user,logout_user,login_required
@@ -36,9 +36,10 @@ def logout():
 @auth.route('/register', methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
+    role = Role.query.filter_by(id = 2).first()
 
     if form.validate_on_submit():
-        user = User( email=form.email.data, username=form.username.data, password=form.password.data)
+        user = User( email=form.email.data, username=form.username.data, password=form.password.data, role=role)
 
         db.session.add(user)
 
