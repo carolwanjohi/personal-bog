@@ -1,0 +1,43 @@
+<!-- Display posts -->
+{% macro displayPostList(post_list) %}
+
+
+    {% for post in post_list %}
+        <div class="row">
+            
+            <div class="col-md-2 col-lg-2">
+                
+            </div>
+
+            <div class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 well post-well">
+            
+                <li class="text-center">
+
+                    <h3 class="post-title">
+
+                        <a href="/post/{{post.id}}">
+                            {{ post.post_title }}   
+                        </a>
+
+                        <br>
+
+                        <small>
+                            by {{ post.user.username }}
+                            <br>
+                        </small>
+                        
+                    </h3>
+
+                </li>
+
+            </div>
+
+            <div class="col-md-2 col-lg-2">
+                
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+{% endmacro %}
