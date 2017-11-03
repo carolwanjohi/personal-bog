@@ -2,6 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from datetime import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -33,6 +34,9 @@ class User(UserMixin,db.Model):
 
     # role_id column for a User's role
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+
+    # relationship between post and user class
+    posts = db.relationship('Post', backref='user', lazy='dynamic')
 
     @property
     def password(self):
@@ -66,7 +70,7 @@ class Role(db.Model):
     Role class to define a User's role in the database
     '''
 
-    # Name od the table
+    # Name of the table
     __tablename__ = 'roles'
 
     # id column that is the primary key
@@ -80,6 +84,65 @@ class Role(db.Model):
 
     def __repr__(self):
         return f'User {self.name}'
+
+class Post(db.Model):
+    '''
+    Post class to define a blog post by a user with Writer role
+    '''
+
+    # Name of the table
+    __tablename__ = 'posts'
+
+    # id column that is the primary key
+    id = db.Column(db.Integer, primary_key = True)
+
+    # post_title column for the post's title
+    post_title = db.Column(db.String)
+
+    # post_content column for the post's content
+    post_content = db.Column(db.String)
+
+    # post_date column for the post's posting date 
+    post_date = db.Column(db.Time, default=datetime.utcnow())
+
+    # user_id column for linking a post with a user
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+
+    def save_post(self):
+        '''
+        Function that saves a new blog post to the posts table and database
+        '''
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_posts(cls):
+        '''
+        Function that queries the Posts Table in the database and returns all the information from the Posts Table
+
+        Returns:
+            posts : all the information in the posts table
+        '''
+        posts = Post.query.order_by(Post.id.desc()).all()
+        return posts
+
+    def delete_post(self):
+        '''
+        Function that deletes a specific post from the posts table and database
+        '''
+        db.session.delete(self)
+        db.session.commit()
+
+
+
+
+
+
+
+
+
+
+
 
 
 
