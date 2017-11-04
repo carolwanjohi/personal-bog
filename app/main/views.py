@@ -156,6 +156,40 @@ def delete_post(id):
     else:
         abort(404)
 
+@main.route('/writer/post/update/<int:id>' , methods=['GET','POST'])
+@login_required
+def update_post(id):
+
+    '''
+    View function that updates a post and redirect to the writer view function
+    '''
+
+    if current_user.role.id == 1:
+
+        current_post = Post.query.get(id)
+
+        form = PostForm(obj=current_post)
+
+        if form.validate_on_submit():
+            
+            form.populate_obj(current_post)
+
+            comments = Comment.query.filter_by(post_id=id).all()
+            post = Post.query.filter_by(id=id).update({
+                'post_title': form.post_title.data, 
+                'post_content': form.post_content.data
+                })
+            db.session.commit()
+
+            return redirect(url_for('.writer'))
+
+        title = 'Update Post'
+
+        return render_template('update_post.html', title = title, update_post_form=form )
+
+    else:
+        abort(404)
+
 
 
 

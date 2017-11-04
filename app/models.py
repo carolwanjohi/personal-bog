@@ -135,7 +135,7 @@ class Post(db.Model):
     @classmethod
     def delete_post(cls,post_id):
         '''
-        Function that deletes a specific post from the posts table and database
+        Function that deletes a specific post from the posts table and database and also delete its comments
 
         Args:
             post_id : specific post id
