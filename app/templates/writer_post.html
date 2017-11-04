@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+
+
+<!-- Content block -->
+{% block content %}
+
+    <title> {{ title }} </title>
+
+    <div class="container">
+
+        <h2> 
+            {{ post.post_title }}
+            <br>
+            <small>
+                by {{ post.user.username }}
+            </small> 
+        </h2>
+
+        <p>
+            {{ post.post_content }}
+        </p>
+
+        <hr>
+
+        <div class="row">
+
+            <div class="col-md4 col-lg-4">
+
+                <h3>
+
+                    <a href="/writer/post/update/{{post.id}}">
+                        Update Post
+                    </a>
+
+                </h3>
+
+            </div>
+
+            <div class="col-md4 col-lg-4">
+                
+            </div>
+
+            <div class="col-md4 col-lg-4">
+
+                <h3>
+
+                    <a href="/writer/post/delete/{{post.id}}">
+                        Delete Post
+                    </a>
+
+                </h3>
+                
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="row">
+
+            <div class="col-md-4 col-lg-4">
+
+                <h3>Comments</h3>
+
+            </div>
+
+            <div class="col-md-4 col-lg-4">
+                
+            </div>
+
+            <div class="col-md-4 col-lg-">
+                
+
+            </div>
+
+        </div>
+
+        <hr>
+        
+        <ul class="list-unstyled">
+            {{ macro.displayCommentListWriter(comments) }}
+        </ul>
+
+
+
+    </div>
+
+{% endblock %}

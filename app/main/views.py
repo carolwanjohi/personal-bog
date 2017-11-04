@@ -100,6 +100,43 @@ def new_post():
     else:
         abort(404)
 
+@main.route('/writer/post/<int:id>')
+@login_required
+def writer_post(id):
+
+    '''
+    View post page function that returns the writer page and its data
+    '''
+    if current_user.role.id == 1 :
+
+        post = Post.query.get(id)
+        title = f'Post {post.id}'
+        comments = Comment.get_comments(id)
+
+
+        return render_template('writer_post.html', title = title, post=post, comments=comments )
+
+    else:
+        abort(404)
+
+@main.route('/writer/post/comment/delete/<int:id>')
+@login_required
+def delete_comment(id):
+
+    '''
+    View function that deletes a comment and redirect to writer post view function
+    '''
+
+    if current_user.role.id == 1:
+
+        comment = Comment.query.get(id)
+        comment.delete_single_comment(id)
+
+        return redirect(url_for('.writer'))
+
+    else:
+        abort(404)
+
 
 
 
