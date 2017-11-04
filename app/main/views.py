@@ -5,6 +5,8 @@ from .forms import CommentForm,PostForm
 from flask_login import login_required,current_user
 from datetime import datetime, timezone
 from .. import db
+import markdown2
+
 
 # Views
 @main.route('/')
@@ -30,7 +32,9 @@ def post(id):
 
     comments = Comment.get_comments(id)
 
-    return render_template('post.html', title=title, post=post, comments=comments )
+    format_post = markdown2.markdown(post.post_content,extras=["code-friendly", "fenced-code-blocks"])
+
+    return render_template('post.html', title=title, post=post, comments=comments, format_post=format_post )
 
 @main.route('/post/comment/new/<int:id>', methods=['GET','POST'])
 @login_required
@@ -112,8 +116,10 @@ def writer_post(id):
         title = f'Post {post.id}'
         comments = Comment.get_comments(id)
 
+        format_post = markdown2.markdown(post.post_content,extras=["code-friendly", "fenced-code-blocks"])
 
-        return render_template('writer_post.html', title = title, post=post, comments=comments )
+
+        return render_template('writer_post.html', title = title, post=post, comments=comments, format_post=format_post )
 
     else:
         abort(404)

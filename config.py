@@ -8,6 +8,10 @@ class Config:
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    # simple mde configurations
+    SIMPLEMDE_JS_IIFE = True
+    SIMPLEMDE_USE_CDN = True
+
 class ProdConfig(Config):
     '''
     Pruduction configuration child class

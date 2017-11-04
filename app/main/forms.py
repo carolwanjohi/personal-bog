@@ -13,7 +13,7 @@ class PostForm(FlaskForm):
     '''
     Class to create a wtf form for creating a post
     '''
-    post_title = StringField('Post Title', validators=[Required()])
-    post_content = TextAreaField('Post Content', validators=[Required()])
+    post_title = StringField('Post Title')
+    post_content = TextAreaField('Post Content')
     submit = SubmitField('Submit')
 
