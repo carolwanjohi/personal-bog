@@ -58,25 +58,6 @@ class TestComment(unittest.TestCase):
 
         self.assertFalse( len(gotten_comments) == len(Comment.query.all()) )
 
-    def test_delete_multiple_comment(self):
-        '''
-        Test case to check if test_comment is deleted from the database
-        '''
-
-        self.new_comment.save_comment()
-
-        self.comment_post = Post(post_title='Banana', post_content='I eat bananas. I love bananas')
-
-        test_comment = Comment(comment_content="You work is crap", post=self.comment_post)
-
-        test_comment.save_comment()
-
-        test_comment.delete_multiple_comment(test_comment.post.id)
-
-        gotten_comments = Comment.get_comments(34123412341234123412)
-
-        self.assertFalse( len(gotten_comments) == len(Comment.query.all()) )
-
 
 
 

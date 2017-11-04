@@ -4,8 +4,7 @@ from ..models import User,Role,Post,Comment
 from .forms import CommentForm,PostForm
 from flask_login import login_required,current_user
 from datetime import datetime, timezone
-
-
+from .. import db
 
 # Views
 @main.route('/')
@@ -124,7 +123,7 @@ def writer_post(id):
 def delete_comment(id):
 
     '''
-    View function that deletes a comment and redirect to writer post view function
+    View function that deletes a comment and redirect to writer view function
     '''
 
     if current_user.role.id == 1:
@@ -136,6 +135,31 @@ def delete_comment(id):
 
     else:
         abort(404)
+
+@main.route('/writer/post/delete/<int:id>')
+@login_required
+def delete_post(id):
+
+    '''
+    View function that deletes a post and its comments and redirect to writer view function
+    '''
+
+    if current_user.role.id == 1:
+
+        post = Post.query.get(id)
+
+        post.delete_post(id)
+
+        return redirect(url_for('.writer'))
+
+
+    else:
+        abort(404)
+
+
+
+
+
 
 
 

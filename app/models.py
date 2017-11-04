@@ -112,7 +112,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     # relationship between post and comment class
-    comments = db.relationship('Comment', backref='post', lazy='dynamic')
+    comments = db.relationship('Comment', backref='post', lazy='dynamic', cascade="all, delete-orphan")
 
     def save_post(self):
         '''
@@ -140,7 +140,7 @@ class Post(db.Model):
         Args:
             post_id : specific post id
         '''
-        # comment = Post.query.filter_by(comments=Comment.post_id).delete()
+        comments = Comment.query.filter_by(post_id=post_id).delete()
         post = Post.query.filter_by(id=post_id).delete()
         db.session.commit()
 
@@ -159,7 +159,7 @@ class Comment(db.Model):
     comment_content = db.Column(db.String)
 
     # post_id column for linking a comment to a specific post
-    post_id = db.Column(db.Integer, db.ForeignKey("posts.id") )
+    post_id = db.Column(db.Integer, db.ForeignKey("posts.id",ondelete='CASCADE') )
 
     # user_id column for linking a comment to a specific user
     user_id = db.Column(db.Integer, db.ForeignKey("users.id") )
@@ -195,18 +195,7 @@ class Comment(db.Model):
             comment_id : specific comment id
         '''
         comment = Comment.query.filter_by(id=comment_id).delete()
-        db.session.commit() 
-
-    @classmethod
-    def delete_multiple_comment(cls,post_id):
-        '''
-        Function that deletes a specific single comment from the comments table and database
-
-        Args:
-            post_id : specific post_id
-        '''
-        comment = Comment.query.filter_by(post_id=post_id).delete()
-        db.session.commit() 
+        db.session.commit()
 
 
 
