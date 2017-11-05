@@ -1,4 +1,4 @@
-from flask import render_template,request,redirect,url_for,abort
+from flask import render_template,request,redirect,url_for,abort,flash
 from . import main
 from ..models import User,Role,Post,Comment
 from .forms import CommentForm,PostForm
@@ -6,6 +6,7 @@ from flask_login import login_required,current_user
 from datetime import datetime, timezone
 from .. import db
 import markdown2
+from ..email import mail_message
 
 
 # Views
@@ -108,6 +109,9 @@ def new_post():
             post_content = form.post_content.data
             new_post = Post(post_title=post_title, post_content=post_content, user=current_user)
             new_post.save_post()
+            subscribers = User.get_subscribers()
+            subscribers = ",".join(subscribers)
+            mail_message("New post in the C blog","email/update_user",subscribers)
 
             return redirect(url_for('.writer'))
 
