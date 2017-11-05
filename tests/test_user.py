@@ -40,3 +40,30 @@ class TestUser(unittest.TestCase):
         Test case that confirms that our user password_hash can be verified when we pass in the correct the password
         '''
         self.assertTrue(self.new_user.verify_password('banana'))
+
+    def test_subcribe_user(self):
+        '''
+        Test case that confirms subscribe is changed to True by the subcribe_user method
+        '''
+        self.new_user.save_user()
+        self.new_user.subcribe_user(self.new_user.id)
+        self.assertEqual(self.new_user.subscribe, True)
+
+    def test_get_subscribers(self):
+        '''
+        Test case to check if all users who are subscribers are returned by the get_subscribers function
+        '''
+
+        self.new_user.save_user()
+
+        test_user = User(username="Test User",password='banana', role=self.user_role)
+
+        test_user.save_user()
+        test_user.subcribe_user(test_user.id)
+
+        gotten_subcriber = User.get_subscribers()
+
+        self.assertEqual( len(gotten_subcriber) , len(User.query.filter_by(subscribe=True).all()) )
+
+
+

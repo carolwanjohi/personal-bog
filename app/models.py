@@ -61,6 +61,9 @@ class User(UserMixin,db.Model):
     # relationship between user and comment class
     comments = db.relationship('Comment', backref='user', lazy='dynamic')
 
+    # subscribe column for user to subcribe to new post updates
+    subscribe = db.Column(db.Boolean, default=False)
+
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -87,6 +90,35 @@ class User(UserMixin,db.Model):
         '''
         db.session.add(self)
         db.session.commit()
+
+    @classmethod
+    def subcribe_user(cls,user_id):
+        '''
+        Function that queries the database and set subscribe to True for a user with the specified id
+
+        Args:
+            user_id : specific user id
+        '''
+        user = User.query.filter_by(id=user_id).update({
+            'subscribe':True
+            })
+        db.session.commit()
+
+    @classmethod
+    def get_subscribers(cls):
+        '''
+        Function that queries the Users Table in the database and returns only users who have subscribe set to True
+
+        Returns:
+            users emails: list of email addresses for users who have subscribe set to True
+        '''
+        users = User.query.filter_by(subscribe=True).all()
+        users_emails = []
+        for user in users:
+            users_emails.append(user.email)
+        return users_emails
+
+
 
 class Post(db.Model):
     '''

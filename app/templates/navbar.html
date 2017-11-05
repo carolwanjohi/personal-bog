@@ -47,6 +47,16 @@
 
                           <li> <h4 class="username"> {{current_user.username}} </h4> </li>
 
+                          {% if current_user.subscribe == False and current_user.role_id == 2 %}
+
+                              <li>
+                                  <h5 class="subscribe">
+                                      <a href="/subscribe/{{current_user.id}}"> Subscribe </a>
+                                  </h5>
+                              </li>
+
+                          {% endif %}
+
                           <li> <a href="{{url_for('auth.logout')}}">Sign out</a> </li>
 
                           {% else %}

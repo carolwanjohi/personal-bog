@@ -22,14 +22,18 @@
     /*color: #9B59B6;*/
 }
 
-.username {
+.username, .subscribe {
     margin-top:0.85em;
     color:white; 
     font-size: 1.25em;
 }
 
+h5.subscribe {
+    margin-left: 0.95em;
+}
+
 @media only screen and (max-width: 425px) {
-    .username {     
+    .username, .subscribe {     
         margin-left: 0.85em;
         margin-top: 0;
         margin-bottom: 0;
