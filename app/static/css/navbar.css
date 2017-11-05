@@ -1,43 +1,53 @@
-/*Styles for the Nabasr*/
+/*Styles for the Nabar*/
 .navbar {
-/*    background-color: #FDFEFE;
-    border-color: #D6EAF8;*/
+    background-color: #003459;
+    border-color: #00171F;
+    font-family: 'Lora', serif;
 }
 
 .navbar-inverse .navbar-brand { 
-/*    color:#283747;
-    font-size: 1.7em;*/
+    color:#FFFFFF;
+    font-size: 1.7em;
 }
 
 .navbar-inverse .navbar-brand:hover {
-    /*color: #9B59B6;*/
+    color: #00A7E1;
 }
 
 .navbar-inverse .navbar-nav > li > a { 
-    /*color:#283747; */
-    /*font-size: 1.25em;*/
+    color:#FFFFFF; 
+    font-size: 1.25em;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover {
-    /*color: #9B59B6;*/
+    color: #00A7E1;
 }
 
 .username, .subscribe {
     margin-top:0.85em;
-    color:white; 
+    color: #FFFFFF; 
     font-size: 1.25em;
 }
 
-h5.subscribe {
+h5.subscribe > a {
     margin-left: 0.95em;
+    color: #FFFFFF;
+}
+
+h5.subscribe > a:hover {
+    color: #00A7E1;
+    text-decoration: none;
 }
 
 @media only screen and (max-width: 425px) {
-    .username, .subscribe {     
+    .username, h5.subscribe > a {     
         margin-left: 0.85em;
         margin-top: 0;
         margin-bottom: 0;
-        font-size: 1.15em;
         font-size: 1.25em;
+    }
+    h5.subscribe > a {
+        font-size: 1em;
+        margin-left: 0.75em;
     }
 }
