@@ -63,7 +63,7 @@ class TestUser(unittest.TestCase):
 
         gotten_subcriber = User.get_subscribers()
 
-        self.assertTrue( len(gotten_subcriber) == len(User.query.filter_by(subscribe=True).all()) )
+        self.assertEqual( len(gotten_subcriber) , len(User.query.filter_by(subscribe=True).all()) )
 
 
 

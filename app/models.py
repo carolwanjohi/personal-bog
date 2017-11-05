@@ -110,10 +110,13 @@ class User(UserMixin,db.Model):
         Function that queries the Users Table in the database and returns only users who have subscribe set to True
 
         Returns:
-            users : all the information for users who have subscribe set to True
+            users emails: list of email addresses for users who have subscribe set to True
         '''
         users = User.query.filter_by(subscribe=True).all()
-        return users
+        users_emails = []
+        for user in users:
+            users_emails.append(user.email)
+        return users_emails
 
 
 
