@@ -1,1 +1,4 @@
 /*Styles for the home page*/
+.index-header, .post-title {
+    font-family: 'Lora', serif;
+}
