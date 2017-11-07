@@ -1,0 +1,12 @@
+/*Styles for the New Comment page*/
+
+form.form {
+    font-family: 'Lora', serif;
+    font-size: 1.5em;
+}
+
+input#submit.btn.btn-default {
+    background-color: #A3E4D7;
+    border-color: #73C6B6;
+    font-size: 0.75em;
+}
