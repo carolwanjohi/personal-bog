@@ -48,7 +48,7 @@ This requires internet connection.
 
 ## Known Bugs
 
-- Subcription
+No known bugs
 
 ## Technologies Used
 - Python3.6
