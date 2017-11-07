@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
+
+<!-- Styles block -->
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/login.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+{% endblock %}
+
 <!-- Content block -->
 {% block content %}
     <title> {{ title }} </title>
@@ -29,7 +37,7 @@
 
           {{ wtf.quick_form(login_form) }}
 
-          <p> Don't  have an account?  <a href="{{url_for('auth.register')}}">Sign up here</a></p>
+          <p class="register"> Don't  have an account?  <a href="{{url_for('auth.register')}}">Sign up here</a></p>
 
         </div>
 

@@ -1,0 +1,65 @@
+/*Style for the Post page*/
+.post-title, .post-content, .comment-header, .comment-create, .comment-content {
+    color: #003459;
+    font-family: 'Lora', serif;
+}
+
+small.writer {
+    color: #007EA7;
+}
+
+i.glyphicon.glyphicon-menu-left.back-icon {
+    margin-top: 1.15em;
+    font-size: 2.5em;
+    margin-left: 1.5em;
+    color: #003459;
+}
+
+div.col-sm-10.col-md-10.col-lg-10 > p {
+    font-family: 'Lora', serif;
+    font-size: 1.25em;
+}
+
+.comment-header, .comment-create {
+    font-size: 2.25em;
+}
+
+.comment-create {
+    text-align: right;
+}
+
+h3.comment-create > a {
+    color: #007EA7;
+    font-family: 'Lora', serif;
+    text-decoration: none;
+}
+
+h3.comment-create > a:hover {
+    color: #00A7E1;
+}
+
+.col-xs-12.col-sm-12.col-md-8.col-lg-8.well.comment-well{
+    background-color: #EBF5FB;
+}
+
+@media only screen and (max-width: 425px) {
+    .comment-header, .comment-create {
+    font-size: 1em;
+    }
+
+}
+
+@media only screen and (max-width: 425px) {
+    i.glyphicon.glyphicon-menu-left.back-icon{     
+        display: none;
+    }
+    div.col-sm-10.col-md-10.col-lg-10 > p {
+        font-size: 1.15em;
+    }
+    .comment-header, .comment-create {
+        font-size: 1.75em;
+    }
+    .comment-create {
+        text-align: left;
+    }
+}

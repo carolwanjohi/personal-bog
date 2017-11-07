@@ -1,0 +1,35 @@
+/*Styles for the Writer Home page*/
+.writer-header, .post-title, .post-create {
+    color: #003459;
+    font-family: 'Lora', serif;
+}
+
+.writer-header, .post-create{
+    font-size: 2.5em;
+}
+
+.post-create {
+    text-align: right;
+}
+
+.col-xs-12.col-sm-12.col-md-8.col-lg-8.well.post-well{
+    background-color: #EBF5FB;
+}
+
+h3.post-title > a, h3.post-create > a {
+    color: #007EA7;
+    font-family: 'Lora', serif;
+    text-decoration: none;
+}
+
+h3.post-title > a:hover, h3.post-create > a:hover {
+    color: #00A7E1;
+}
+
+@media only screen and (max-width: 425px) {
+    .writer-header, .post-create{
+        font-size: 1.75em;
+    }
+}
+
+

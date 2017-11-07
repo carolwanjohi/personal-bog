@@ -8,7 +8,7 @@ class LoginForm(FlaskForm):
     Function to create a wtf form for logging in
     '''
     email = StringField('Your Email Address', validators=[Required(),Email()])
-    password = StringField('Password', validators=[Required()])
+    password = PasswordField('Password', validators=[Required()])
     remember = BooleanField('Remember me')
     submit = SubmitField('Sign In')
 

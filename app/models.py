@@ -138,7 +138,7 @@ class Post(db.Model):
     post_content = db.Column(db.String)
 
     # post_date column for the post's posting date 
-    post_date = db.Column(db.DateTime, default=datetime.now(timezone.utc))
+    post_date = db.Column(db.DateTime, default=datetime.now())
 
     # user_id column for linking a post with a user
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
