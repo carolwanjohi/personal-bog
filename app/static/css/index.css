@@ -1,1 +1,24 @@
 /*Styles for the home page*/
+.index-header, .post-title {
+    color: #003459;
+    font-family: 'Lora', serif;
+}
+
+.index-header{
+    font-size: 2.5em;
+}
+
+.col-xs-12.col-sm-12.col-md-8.col-lg-8.well.post-well{
+    background-color: #EBF5FB;
+}
+
+h3.post-title > a {
+    color: #007EA7;
+    font-family: 'Lora', serif;
+    text-decoration: none;
+}
+
+h3.post-title > a:hover {
+    color: #003459;
+}
+
