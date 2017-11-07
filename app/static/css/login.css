@@ -1,0 +1,23 @@
+/*Styles for the Login page*/
+
+form.form, .register {
+    font-family: 'Lora', serif;
+    font-size: 1.5em;
+}
+
+input#submit.btn.btn-default {
+    background-color: #D6EAF8;
+    border-color: #5B2C6F;
+    font-size: 0.75em;
+}
+
+p.register > a{
+    color: #007EA7;
+    font-family: 'Lora', serif;
+    text-decoration: none;
+}
+
+p.register > a:hover {
+    color: #00A7E1;
+}
+
