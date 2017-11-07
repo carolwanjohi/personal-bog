@@ -1,0 +1,15 @@
+/*Styles for the New Post page*/
+
+form.form {
+    font-family: 'Lora', serif;
+}
+
+label {
+    font-size: 1.5em;
+}
+
+input#submit.btn.btn-default {
+    background-color: #A3E4D7;
+    border-color: #73C6B6;
+    font-size: 1.5em;
+}
