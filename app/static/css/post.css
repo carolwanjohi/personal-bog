@@ -57,9 +57,9 @@ h3.comment-create > a:hover {
         font-size: 1.15em;
     }
     .comment-header, .comment-create {
-    font-size: 1.75em;
+        font-size: 1.75em;
     }
     .comment-create {
-    text-align: left;
+        text-align: left;
     }
 }
